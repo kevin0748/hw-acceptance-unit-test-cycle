@@ -31,6 +31,12 @@ module NavigationHelpers
         movie = Movie.where(title: $1).first()
         return "/movies/#{movie.id}"
       end
+  
+    when /^the Similar Movies page for "(.*)"$/
+      begin
+        movie = Movie.where(title: $1).first()
+        return "/movies/#{movie.id}/same-director"
+      end
 
     else
       begin

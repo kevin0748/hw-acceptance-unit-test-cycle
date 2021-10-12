@@ -6,6 +6,16 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  def same_director
+    id = params[:id]
+    movie = Movie.find(id)
+    if movie.director == nil || movie.director.length == 0
+      flash[:notice] = "'#{movie.title}' has no director info."
+      redirect_to(movies_path)
+    end
+    @movies = Movie.same_director(movie.director)
+  end
+
   def index
     @movies = Movie.all
   end
