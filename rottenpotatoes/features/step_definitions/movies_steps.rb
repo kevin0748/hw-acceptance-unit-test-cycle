@@ -1,4 +1,9 @@
 
+Then /(.*) seed movies should exist/ do | n_seeds |
+  Movie.count.should be n_seeds.to_i
+end
+
+
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     Movie.create movie
